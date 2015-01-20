@@ -7,20 +7,18 @@ percent_map <- function(var, color, legend.title, min = 0, max = 100) {
   shades <- colorRampPalette(c("white", color))(100)
   
   # constrain gradient to percents that occur between min and max
-  var <- pmax(var, min)
-  var <- pmin(var, max)
-  percents <- as.integer(cut(var, 100, 
-    include.lowest = TRUE, ordered = TRUE))
+
+  percents <- as.integer(var)
   fills <- shades[percents]
 
   # plot choropleth map
   map("world", fill = TRUE, col = fills, 
-    resolution = 0, lty = 0, projection = "polyconic", 
+    resolution = 0, lty = 0, projection = "mercator", 
     myborder = 0, mar = c(0,0,0,0))
   
   # overlay state borders
   map("world", col = "white", fill = FALSE, add = TRUE,
-    lty = 1, lwd = 1, projection = "polyconic", 
+    lty = 1, lwd = 1, projection = "mercator", 
     myborder = 0, mar = c(0,0,0,0))
   
   # add a legend
