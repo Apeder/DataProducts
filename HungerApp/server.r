@@ -1,5 +1,4 @@
-setwd("~/Rfiles/DataProducts")
-hungerdat <- read.csv("data/hunger.csv")
+hungerdat <- read.csv("Data/hunger.csv")
 library(plyr)
 
 attach(hungerdat)  
