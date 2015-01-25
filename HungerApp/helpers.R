@@ -7,7 +7,6 @@ percent_map <- function(var, color, regions, legend.title, min = 0, max = 100) {
   percents <- as.integer(var)
   fills <- shades[percents]
  
- 
   # overlay country borders
   map("world", col = "black", fill = FALSE, names=TRUE,
       lty = 1, lwd = 1, projection = "mercator", 
@@ -20,11 +19,11 @@ percent_map <- function(var, color, regions, legend.title, min = 0, max = 100) {
   
   # add a legend
   inc <- (max - min) / 4
-  legend.text <- c(paste0(min, " % or less"),
+  legend.text <- c(paste0(min),
     paste0(min + inc, " %"),
     paste0(min + 2 * inc, " %"),
     paste0(min + 3 * inc, " %"),
-    paste0(max, " % or more"))
+    paste0(max))
   
   legend("bottomleft", 
     legend = legend.text, 
