@@ -1,24 +1,21 @@
-# Note: percent map is designed to work with the counties data set
-# It may not work correctly with other data sets if their row order does 
-# not exactly match the order in which the maps package plots counties
-percent_map <- function(var, color, legend.title, min = 0, max = 100) {
+percent_map <- function(var, color, regions, legend.title, min = 0, max = 100) {
 
   # generate vector of fill colors for map
   shades <- colorRampPalette(c("white", color))(100)
   
   # constrain gradient to percents that occur between min and max
-
   percents <- as.integer(var)
   fills <- shades[percents]
-
+ 
+ 
+  # overlay country borders
+  map("world", col = "black", fill = FALSE, names=TRUE,
+      lty = 1, lwd = 1, projection = "mercator", 
+      myborder = 0, mar = c(0,0,0,0))
+ 
   # plot choropleth map
-  map("world", fill = TRUE, col = fills, 
+  map("world", regions=regions, fill = TRUE, col = fills, add=TRUE,
     resolution = 0, lty = 0, projection = "mercator", 
-    myborder = 0, mar = c(0,0,0,0))
-  
-  # overlay state borders
-  map("world", col = "white", fill = FALSE, add = TRUE,
-    lty = 1, lwd = 1, projection = "mercator", 
     myborder = 0, mar = c(0,0,0,0))
   
   # add a legend

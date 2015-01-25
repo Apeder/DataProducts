@@ -17,12 +17,13 @@ shinyUI(fluidPage(
                   selected = "Male"),
       
       sliderInput("Year", label="Year", 
-                  min=1970, max=2011, value=1970, step=1,
+                  min=1985, max=2011, value=1985, step=1,
                   format="###0",animate=TRUE)
     ),
     
     mainPanel(plotOutput("map"), 
-              textOutput("text1")
+              textOutput("text1"),
+              textOutput("text2")
               )
   )
 ))
